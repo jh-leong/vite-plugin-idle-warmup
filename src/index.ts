@@ -63,7 +63,6 @@ export default function idleWarmup(options: Options): Plugin {
         if (init) return;
         init = true;
         fire();
-        console.log('init');
       });
     },
   };
