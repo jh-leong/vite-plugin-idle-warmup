@@ -1,10 +1,42 @@
 # vite-plugin-idle-warmup
 
-[![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![bundle][bundle-src]][bundle-href]
-[![JSDocs][jsdocs-src]][jsdocs-href]
-[![License][license-src]][license-href]
+[![npm version][npm-version-src]][npm-version-href] [![npm downloads][npm-downloads-src]][npm-downloads-href] [![bundle][bundle-src]][bundle-href] [![JSDocs][jsdocs-src]][jsdocs-href] [![License][license-src]][license-href]
+
+🚀 Optimize your Vite app's speed by warming up Vite's transform cache during server idle periods.
+
+## why
+
+Vite comes with a powerful built-in feature for warming up the cache, as outlined in [Warm Up Frequently Used Files](https://vitejs.dev/guide/performance.html#warm-up-frequently-used-files) and [vite-plugin-warmup](https://github.com/bluwy/vite-plugin-warmup).
+
+However, when we want to warm up resources for lazily loaded pages, the fact that Vite's transform cache is generated during server startup can lead to longer initial page load times.
+
+`vite-plugin-idle-warmup` is a Vite plugin that optimizes server response times by performing idle warming up of Vite's transform cache during server idle periods. It helps to enhance the user experience by reducing the loading times for subsequent requests.
+
+## Usage
+
+> Example project: [playground](./playground)
+
+### Setup
+
+Install `vite-plugin-idle-warmup`:
+
+```bash
+npm i -D vite-plugin-idle-warmup
+```
+
+Use the Vite plugin:
+
+```ts
+// vite.config.js
+import { defineConfig } from 'vite';
+import idleWarmup from 'vite-plugin-idle-warmup';
+
+export default defineConfig({
+  plugins: [idleWarmup({ files: ['./src/foo.ts', './src/BarComp.vue'] })],
+});
+```
+
+The files can be direct file names or glob patterns using [fast-glob](https://github.com/mrmlnc/fast-glob).
 
 ## License
 
